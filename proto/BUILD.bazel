@@ -38,12 +38,35 @@ proto_library(
 )
 
 proto_library(
+    name = "idpf_p4info_proto",
+    srcs = ["idpf/p4info.proto"],
+    deps = [
+        ":p4info_proto",
+    ],
+    # TODO(github.com/grpc/grpc/issues/20675): strip_import_prefix breaks
+    # cc_grpc_library. Make proto folder the Bazel root folder as a workaround.
+    # strip_import_prefix = "proto",
+)
+
+proto_library(
     name = "p4runtime_proto",
     srcs = ["p4/v1/p4runtime.proto"],
     deps = [
         ":p4data_proto",
         ":p4info_proto",
         "@com_google_googleapis//google/rpc:status_proto",
+        "@com_google_protobuf//:any_proto",
+    ],
+    # TODO(github.com/grpc/grpc/issues/20675): strip_import_prefix brakes
+    # cc_grpc_library. Make proto folder the Bazel root folder as a workaround.
+    # strip_import_prefix = "proto",
+)
+
+proto_library(
+    name = "idpf_p4runtime_proto",
+    srcs = ["idpf/p4runtime.proto"],
+    deps = [
+        ":p4runtime_proto",
         "@com_google_protobuf//:any_proto",
     ],
     # TODO(github.com/grpc/grpc/issues/20675): strip_import_prefix brakes
@@ -62,6 +85,11 @@ cc_proto_library(
 )
 
 cc_proto_library(
+    name = "idpf_p4info_cc_proto",
+    deps = [":idpf_p4info_proto"],
+)
+
+cc_proto_library(
     name = "p4data_cc_proto",
     deps = [":p4data_proto"],
 )
@@ -69,6 +97,11 @@ cc_proto_library(
 cc_proto_library(
     name = "p4runtime_cc_proto",
     deps = [":p4runtime_proto"],
+)
+
+cc_proto_library(
+    name = "idpf_p4runtime_cc_proto",
+    deps = [":idpf_p4runtime_proto"],
 )
 
 py_proto_library(
@@ -82,6 +115,11 @@ py_proto_library(
 )
 
 py_proto_library(
+    name = "idpf_p4info_py_proto",
+    deps = [":idpf_p4info_proto"],
+)
+
+py_proto_library(
     name = "p4data_py_proto",
     deps = [":p4data_proto"],
 )
@@ -89,6 +127,20 @@ py_proto_library(
 py_proto_library(
     name = "p4runtime_py_proto",
     deps = [":p4runtime_proto"],
+)
+
+py_proto_library(
+    name = "idpf_p4runtime_py_proto",
+    deps = [":idpf_p4runtime_proto"],
+)
+
+go_proto_library(
+    name = "idpf_p4info_go_proto",
+    importpath = "github.com/p4lang/p4runtime/go/idpf",
+    protos = [
+        ":idpf_p4info_proto",
+        ":idpf_p4runtime_proto",
+    ],
 )
 
 go_proto_library(
