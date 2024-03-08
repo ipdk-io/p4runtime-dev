@@ -20,6 +20,8 @@ import "p4/config/v1/p4info.proto";
 
 package idpf;
 
+option go_package = "github.com/p4lang/p4runtime/go/idpf";
+
 message P4Ids {
   enum Prefix {
     UNSPECIFIED = 0;

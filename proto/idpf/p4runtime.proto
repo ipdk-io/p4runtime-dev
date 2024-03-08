@@ -23,6 +23,8 @@ import "p4/v1/p4runtime.proto";
 
 package idpf;
 
+option go_package = "github.com/p4lang/p4runtime/go/idpf";
+
 // MatchValueLookupTable
 message MVLUTEntry {
   uint32 mvlut_id = 1;
