@@ -18,6 +18,9 @@ syntax = "proto3";
 
 import "p4/config/v1/p4info.proto";
 
+// This is an extension of p4/config/v1/p4info.proto.
+// It provides support for the meter externs in the Intel IPU E2100.
+
 package idpf;
 
 option go_package = "github.com/p4lang/p4runtime/go/idpf";
