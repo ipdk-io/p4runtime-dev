@@ -411,15 +411,3 @@ message Digest {
   Preamble preamble = 1;
   P4DataTypeSpec type_spec = 2;
 }
-
-message PacketModMeter {
-  Preamble preamble = 1;
-  MeterSpec spec = 2;
-  int32 size = 3;
-  uint32 index_width = 4;
-}
-
-message DirectPacketModMeter {
-  Preamble preamble = 1;
-  MeterSpec spec = 2;
-}
